@@ -2,19 +2,28 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/Rubyka/grpc-go/src/simple/src/simple"
 )
 
 func main() {
-	doSimple();
-	fmt.Println("vim-go")
+	doSimple()
+
 }
 
-func doSimple(){
-	var sm = simple.SimpleMessage{
+func doSimple() *simple.SimpleMessage {
+	sm := simple.SimpleMessage{
 		Id:         12345,
 		IsSimple:   true,
 		Name:       "My Simple Message",
 		SampleList: []int32{1, 4, 7, 8},
 	}
 	fmt.Println(sm)
+
+	sm.Name = "I renamed you"
+	fmt.Println(sm)
+
+	fmt.Println("The ID is:", sm.GetId())
+
+	return &sm
 }
